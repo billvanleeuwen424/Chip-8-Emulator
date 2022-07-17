@@ -26,3 +26,15 @@
     ansible.builtin.rpm_key:
       state: present
       key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+  
+  - name: Install Jenkins
+    ansible.builtin.dnf:
+      name: 
+        - jenkins
+
+  - name: Add Firewall-cmd To Systemd
+    ansible.builtin.systemd:
+      state: started
+      enabled: yes
+      name: firewalld
+    
