@@ -1,5 +1,8 @@
 # Authour: Bill Van Leeuwen
-# Purpose: Install and configure Jenkins on a Red Hat based server. 
+# Purpose: Configure a Jenkins Build Server
+# Tasks:
+# - Installs and configures firewalld
+# - Installs jenkins
 
 - name: Configure and Install Jenkins
   hosts: all
@@ -38,3 +41,21 @@
       enabled: yes
       name: firewalld
     
+  - name: Configure firewalld for jenkins
+    ansible.posix.firewalld:
+      service: jenkins
+      permanent: yes
+      state: enabled
+
+
+  - name: Configure firewalld for http for jenkins
+    ansible.posix.firewalld:
+      zone: public
+      service: http
+      permanent: yes
+      state: enabled
+
+  - name: Open port 8080 for jenkins
+    ansible.posix.firewalld:
+      port: 8080/tcp
+      state: enabled
