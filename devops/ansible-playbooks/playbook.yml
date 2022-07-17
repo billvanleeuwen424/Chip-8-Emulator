@@ -3,3 +3,14 @@
   become: yes
   become_user: root
   tasks:
+  - name: Upgrade all packages
+    ansible.builtin.dnf:
+      name: "*"
+      state: latest
+
+  - name: Install Prerequisite Packages
+    ansible.builtin.dnf:
+      name: 
+        - java-11-openjdk
+        - wget
+        - firewalld
