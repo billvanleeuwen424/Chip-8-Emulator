@@ -12,5 +12,14 @@
     ansible.builtin.dnf:
       name: 
         - java-11-openjdk
-        - wget
         - firewalld
+
+  - name: Download Jenkins
+    ansible.builtin.get_url:
+      url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+      dest: /etc/yum.repos.d/jenkins.repo
+
+  - name: Get Jenkins GPG Key
+    ansible.builtin.rpm_key:
+      state: present
+      key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
