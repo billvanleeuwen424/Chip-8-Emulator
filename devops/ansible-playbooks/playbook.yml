@@ -1,3 +1,6 @@
+# Authour: Bill Van Leeuwen
+# Purpose: Install and configure Jenkins on a Red Hat based server. 
+
 - name: Configure and Install Jenkins
   hosts: all
   become: yes
