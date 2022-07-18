@@ -21,6 +21,7 @@
       name: 
         - java-11-openjdk
         - firewalld
+        - git
 
 
   - name: Download Jenkins
