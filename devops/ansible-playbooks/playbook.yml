@@ -9,6 +9,8 @@
   become: yes
   become_user: root
   tasks:
+
+
   - name: Upgrade all packages
     ansible.builtin.dnf:
       name: "*"
@@ -19,6 +21,7 @@
       name: 
         - java-11-openjdk
         - firewalld
+
 
   - name: Download Jenkins
     ansible.builtin.get_url:
@@ -34,6 +37,7 @@
     ansible.builtin.dnf:
       name: 
         - jenkins
+
 
   - name: Add Firewall-cmd To Systemd
     ansible.builtin.systemd:
@@ -59,3 +63,10 @@
     ansible.posix.firewalld:
       port: 8080/tcp
       state: enabled
+
+
+  - name: Add jenkins To Systemd
+    ansible.builtin.systemd:
+      state: started
+      enabled: yes
+      name: jenkins
