@@ -71,3 +71,8 @@
       state: started
       enabled: yes
       name: jenkins
+
+  - name: generate ssh key for Jenkins
+    community.crypto.openssh_keypair:
+      path: /etc/ssh/jenkinsKey
+      owner: jenkins
