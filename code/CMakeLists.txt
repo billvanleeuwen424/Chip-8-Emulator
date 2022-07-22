@@ -16,8 +16,8 @@ set(INCLUDE_DIRS
 add_executable(${TARGET_NAME} ${SOURCES})
 
 target_include_directories(${TARGET_NAME} PUBLIC
-"${PROJECT_BINARY_DIR}"
-"${PROJECT_SOURCE_DIR}/lib"
+${PROJECT_BINARY_DIR}
+${PROJECT_SOURCE_DIR}/lib
 )
 
 # set up the tests

@@ -1,1 +1,1 @@
-int testfunc( unsigned char * pRegister, unsigned char additionValue);
+void ADD_7xkk( unsigned char * pRegister, unsigned char additionValue);

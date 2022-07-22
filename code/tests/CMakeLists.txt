@@ -1,5 +1,6 @@
 SET(TEST_SOURCES
-    tests.cpp
+    instructionTests.cpp
+    ${CMAKE_SOURCE_DIR}/lib/instructions.cpp
 )
 
 
