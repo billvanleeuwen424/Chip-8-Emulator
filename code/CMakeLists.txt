@@ -8,6 +8,7 @@ set(TARGET_NAME chip8)
 
 set(SOURCES
     src/main.cpp
+    lib/chip8.hpp
 )
 set(INCLUDE_DIRS
     ${PROJECT_SOURCE_DIR}/lib
