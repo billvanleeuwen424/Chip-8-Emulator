@@ -7,13 +7,24 @@
 TEST_CASE("7xkk Modified the passed register correctly", "[7xkk ADD]"){
     chip8 testChip;
 
-    SECTION("modify the correct register by 1"){
+    unsigned char *registerPointer = &testChip.generalRegisters[0];
 
-        unsigned char *registerPointer = &testChip.generalRegisters[0];
+    SECTION("Modify the correct register by 1"){
+
 
         //add 1 to the 0 register
         ADD_7xkk(registerPointer, 1);
 
+        REQUIRE(testChip.generalRegisters[0] == 1);
+
+    }
+
+    SECTION("Rollover register when x + kk > 255"){
+        //set register to max value 255
+        ADD_7xkk(registerPointer, 255);
+
+        //roll 255 + 2 should == 1
+        ADD_7xkk(registerPointer, 2);
         REQUIRE(testChip.generalRegisters[0] == 1);
 
     }
