@@ -1,5 +1,5 @@
 # Authour: Bill Van Leeuwen
-# Purpose: Configure a RHEL based server
+# Purpose: Configure a RHEL server
 # Tasks:
 #
 
@@ -7,8 +7,19 @@
   hosts: all
   become_user: root
   become: true
+  vars_prompt: 
+    - name: rhel_user
+      prompt: Enter RHEL username.
+    - name: rhel_pass
+      prompt: Enter RHEL password.
   tasks:
 
+  - name: Register server with Red Hat
+    redhat_subscription:
+      state: present
+      username: "{{ rhel_user }}"
+      password: "{{ rhel_pass }}"
+      auto_attach: true
 
   - name: Upgrade all packages
     ansible.builtin.dnf:
@@ -19,5 +30,3 @@
     ansible.builtin.dnf:
       name: 
         - firewalld
-        - git
-        - podman
