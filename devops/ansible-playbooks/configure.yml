@@ -1,0 +1,23 @@
+# Authour: Bill Van Leeuwen
+# Purpose: Configure a RHEL based server
+# Tasks:
+#
+
+- name: Configure Base image
+  hosts: all
+  become_user: root
+  become: true
+  tasks:
+
+
+  - name: Upgrade all packages
+    ansible.builtin.dnf:
+      name: "*"
+      state: latest
+
+  - name: Install Prerequisite Packages
+    ansible.builtin.dnf:
+      name: 
+        - firewalld
+        - git
+        - podman
