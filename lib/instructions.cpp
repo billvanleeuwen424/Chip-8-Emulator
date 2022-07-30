@@ -9,7 +9,5 @@
  * @param additionValue the value to add to that register
  */
 void ADD_7xkk( unsigned char * pRegister, unsigned char additionValue){
-
     *pRegister += additionValue;
-
 }
