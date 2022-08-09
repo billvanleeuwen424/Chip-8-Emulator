@@ -8,6 +8,10 @@
  * @param pRegister a pointer to the deisred register
  * @param additionValue the value to add to that register
  */
-void ADD_7xkk( unsigned char * pRegister, unsigned char additionValue){
+void ADD_7xkk(unsigned char * pRegister, unsigned char additionValue){
     *pRegister += additionValue;
+}
+
+void LD_6xkk(unsigned char * pRegister, unsigned char loadValue){
+    *pRegister = loadValue;
 }

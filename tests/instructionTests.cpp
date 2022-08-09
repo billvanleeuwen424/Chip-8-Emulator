@@ -36,3 +36,25 @@ TEST_CASE("7xkk Modified the passed register correctly", "[7xkk ADD]"){
     }
     
 };
+
+TEST_CASE("6xkk Modified the passed register correctly", "[6xkk LD]"){
+    chip8 testChip;
+
+    unsigned char *registerPointer = &testChip.generalRegisters[0];
+
+    SECTION("Load 255 into register 0"){
+
+        LD_6xkk(registerPointer, 255);
+        REQUIRE(testChip.generalRegisters[0] == 255);
+
+    }
+
+    //test that the value changes properly
+    SECTION("Load 0 into register 0"){
+
+        LD_6xkk(registerPointer, 0);
+        REQUIRE(testChip.generalRegisters[0] == 0);
+        
+    }
+
+}
