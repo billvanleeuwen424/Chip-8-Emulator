@@ -53,4 +53,7 @@ void ADD_8xy4(unsigned char * pRegisterx, unsigned char * pRegistery, unsigned c
     else{
         *pRegisterF = 0;
     }
+
+    //get ONLY the lowest 8 bits of the value
+    *pRegisterx = additonValue & 0xFF;
 }
