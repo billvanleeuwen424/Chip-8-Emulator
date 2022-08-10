@@ -75,6 +75,55 @@ TEST_CASE("8xy0 Loads the value of another register correctly", "[8xy0 LD]"){
     }
 }
 
+TEST_CASE("8xy1 logical OR's the value of x register correctly, and leaves y register alone", "[8xy1 OR]"){
+    chip8 testChip;
+
+    unsigned char *registerPointerx = &testChip.generalRegisters[0];
+    unsigned char *registerPointery = &testChip.generalRegisters[1];
+
+    SECTION("OR, input: X==1, Y==1. output:X==1, Y==1"){
+        *registerPointerx = 1;
+        *registerPointery = 1;
+
+        OR_xy1(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 1);
+        REQUIRE(*registerPointery == 1);
+    }
+
+    SECTION("OR, input: X==0, Y==1. output:X==1, Y==1"){
+        *registerPointerx = 0;
+        *registerPointery = 1;
+
+        OR_xy1(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 1);
+        REQUIRE(*registerPointery == 1);
+    }
+
+    SECTION("OR, input: X==1, Y==0. output:X==1, Y==0"){
+        *registerPointerx = 1;
+        *registerPointery = 0;
+
+        OR_xy1(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 1);
+        REQUIRE(*registerPointery == 0);
+    }
+
+    SECTION("OR, input: X==170 (10101010), Y==85 (01010101). output:X==255 (11111111), Y==85"){
+        *registerPointerx = 170;
+        *registerPointery = 85;
+
+        OR_xy1(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 255);
+        REQUIRE(*registerPointery == 85);
+    }
+}
+
+
+
 TEST_CASE("8xy4 sets carry bit correctly and stores lowest 8 bits in Vx", "[8xy4 ADD]"){
     chip8 testChip;
 

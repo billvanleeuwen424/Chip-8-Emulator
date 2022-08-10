@@ -1,6 +1,11 @@
 #include <iostream>
 #include "constants.hpp"
 
+/* all documentation for these functions is provided by:
+Cogwoods Chip-8 Technical Reference v1.0
+http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#00E0
+*/
+
 /**
  * @brief  
  * 6xkk - LD Vx, byte
@@ -40,6 +45,19 @@ void LD_8xy0(unsigned char * pRegisterx, unsigned char * pRegistery){
     *pRegisterx = *pRegistery;
 }
 
+/**
+ * @brief  
+ * Set Vx = Vx OR Vy.
+ * Performs a bitwise OR on the values of Vx and Vy, then stores the result in Vx. 
+ * A bitwise OR compares the corrseponding bits from two values, and if either bit is 1, then the same bit in the result is also 1. 
+ * Otherwise, it is 0. 
+ * 
+ * @param  pRegisterx: a pointer to the desired set register
+ * @param  pRegistery: a pointer to the register in which value you would like to OR pRegisterx to
+ */
+void OR_xy1(unsigned char * pRegisterx, unsigned char * pRegistery){
+    *pRegisterx = *pRegisterx | *pRegistery;
+}
 
 /**
  * @brief  
