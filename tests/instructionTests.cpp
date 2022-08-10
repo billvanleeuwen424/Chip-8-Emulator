@@ -1,6 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "chip8.hpp"
+#include "constants.hpp"
 #include "instructions.hpp"
 
 TEST_CASE("7xkk Modified the passed register correctly", "[7xkk ADD]"){
@@ -100,5 +101,25 @@ TEST_CASE("8xy4 sets carry bit correctly and stores lowest 8 bits in Vx", "[8xy4
         ADD_8xy4(registerPointerx, registerPointery, registerPointerF);
 
         REQUIRE_FALSE(testChip.generalRegisters[0xF] == 1);
+    }
+
+    SECTION("Vx is set to the lowest 8 bits of a result larger than 8 bits"){
+
+        *registerPointerx = 25;
+        *registerPointery = 255;
+
+        ADD_8xy4(registerPointerx, registerPointery, registerPointerF);
+
+        REQUIRE(testChip.generalRegisters[0] <= BYTE);
+    }
+
+    SECTION("Vx is set to the lowest 8 bits of a result less than 8 bits"){
+
+        *registerPointerx = 1;
+        *registerPointery = 10;
+
+        ADD_8xy4(registerPointerx, registerPointery, registerPointerF);
+
+        REQUIRE(testChip.generalRegisters[0] == 11);
     }
 }

@@ -41,16 +41,29 @@ void LD_8xy0(unsigned char * pRegisterx, unsigned char * pRegistery){
 }
 
 
-
+/**
+ * @brief  
+ *  Set Vx = Vx + Vy, set VF = carry.
+ * 
+ * The values of Vx and Vy are added together. If the result is greater than 8 bits (i.e., > 255,) VF is set to 1, otherwise 0. 
+ * Only the lowest 8 bits of the result are kept, and stored in Vx.
+ * 
+ * @param  pRegisterx: a pointer to the desired set register
+ * @param  pRegistery: a pointer to the register in which value you would like to set pRegisterx to
+ * @param  pRegisterF: the 0xF register, used as carry
+ * @retval None
+ */
 void ADD_8xy4(unsigned char * pRegisterx, unsigned char * pRegistery, unsigned char * pRegisterF){
 
     int additonValue = *pRegisterx + *pRegistery;
 
-    std::cout << additonValue;
     if( additonValue > BYTE ){
         *pRegisterF = 1;
     }
     else{
         *pRegisterF = 0;
     }
+
+    //get ONLY the lowest 8 bits of the value
+    *pRegisterx = additonValue & 0xFF;
 }
