@@ -74,3 +74,22 @@ TEST_CASE("8xy0 Loads the value of another register correctly", "[8xy0 LD]"){
         REQUIRE(testChip.generalRegisters[0] == 1);
     }
 }
+
+TEST_CASE("8xy4 sets carry bit and stores lowest 8 bits in Vx", "[8xy4 ADD]"){
+    chip8 testChip;
+
+    unsigned char *registerPointerx = &testChip.generalRegisters[0];
+    unsigned char *registerPointery = &testChip.generalRegisters[1];
+
+    unsigned char *registerPointerF = &testChip.generalRegisters[0xF];
+
+    SECTION("Carry bit is set to 1 on result greater than 1 byte"){
+        
+        *registerPointerx = 25;
+        *registerPointery = 255;
+
+        ADD_8xy4(registerPointerx, registerPointery, registerPointerF);
+
+        REQUIRE(testChip.generalRegisters[0xF] == 1);
+    }
+}

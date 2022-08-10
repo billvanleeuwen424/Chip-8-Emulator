@@ -1,5 +1,5 @@
 #define MEMORYSIZE 4096
-#define REGISTERCOUNT 16
+#define REGISTERCOUNT 0xF
 
 struct chip8{
     public:
