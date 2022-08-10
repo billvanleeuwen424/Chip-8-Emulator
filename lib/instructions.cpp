@@ -1,3 +1,6 @@
+#include <iostream>
+#include "constants.hpp"
+
 /**
  * @brief  
  * 6xkk - LD Vx, byte
@@ -43,7 +46,11 @@ void ADD_8xy4(unsigned char * pRegisterx, unsigned char * pRegistery, unsigned c
 
     int additonValue = *pRegisterx + *pRegistery;
 
-    if( additonValue > sizeof(unsigned char) ){
+    std::cout << additonValue;
+    if( additonValue > BYTE ){
         *pRegisterF = 1;
+    }
+    else{
+        *pRegisterF = 0;
     }
 }

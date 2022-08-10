@@ -1,5 +1,4 @@
 #include <catch2/catch_test_macros.hpp>
-#include <stdio.h>
 
 #include "chip8.hpp"
 #include "instructions.hpp"
@@ -75,7 +74,7 @@ TEST_CASE("8xy0 Loads the value of another register correctly", "[8xy0 LD]"){
     }
 }
 
-TEST_CASE("8xy4 sets carry bit and stores lowest 8 bits in Vx", "[8xy4 ADD]"){
+TEST_CASE("8xy4 sets carry bit correctly and stores lowest 8 bits in Vx", "[8xy4 ADD]"){
     chip8 testChip;
 
     unsigned char *registerPointerx = &testChip.generalRegisters[0];
@@ -91,5 +90,15 @@ TEST_CASE("8xy4 sets carry bit and stores lowest 8 bits in Vx", "[8xy4 ADD]"){
         ADD_8xy4(registerPointerx, registerPointery, registerPointerF);
 
         REQUIRE(testChip.generalRegisters[0xF] == 1);
+    }
+
+    SECTION("Carry bit is NOT set to 1 on results less than 1 byte"){
+
+        *registerPointerx = 1;
+        *registerPointery = 10;
+
+        ADD_8xy4(registerPointerx, registerPointery, registerPointerF);
+
+        REQUIRE_FALSE(testChip.generalRegisters[0xF] == 1);
     }
 }
