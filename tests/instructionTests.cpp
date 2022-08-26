@@ -165,6 +165,46 @@ TEST_CASE("8xy2 logical AND's the value of register x and leaves register y alon
 }
 
 
+TEST_CASE("8XY3 XOR's the value of register x correctly and leaves register y alone"){
+    chip8 testChip;
+
+    unsigned char *registerPointerx = &testChip.generalRegisters[0];
+    unsigned char *registerPointery = &testChip.generalRegisters[1];   
+
+    SECTION("XOR, input X==255 (11111111), y==255 (11111111). output X==0 (00000000), y==255 (11111111)"){
+
+        *registerPointerx = 0xFF;
+        *registerPointery = 0xFF;
+
+        XOR_8xy3(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 0);
+        REQUIRE(*registerPointery == 0xFF);
+    }
+    
+
+    SECTION("XOR, input X==170 (10101010), y==85 (01010101). output X==255 (11111111), y==85 (01010101)"){
+        *registerPointerx = 0xAA;
+        *registerPointery = 0x55;
+
+        XOR_8xy3(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 0xFF);
+        REQUIRE(*registerPointery == 0x55);
+    }
+
+    SECTION("XOR, input X==85 (01010101), y==85 (01010101). output X==0 (00000000), y==85 (01010101)"){
+        *registerPointerx = 0x55;
+        *registerPointery = 0x55;
+
+        XOR_8xy3(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 0);
+        REQUIRE(*registerPointery == 0x55);
+    }
+}
+
+
 TEST_CASE("8xy4 sets carry bit correctly and stores lowest 8 bits in Vx. Modifys overflow correctly.", "[8xy4 ADD]"){
     chip8 testChip;
 

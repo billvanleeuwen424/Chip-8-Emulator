@@ -77,6 +77,22 @@ void AND_8xy2(unsigned char * pRegisterx, unsigned char * pRegistery){
 
 }
 
+/**
+ * @brief  
+ * 8xy3 - XOR Vx, Vy
+ * Set Vx = Vx XOR Vy.
+ * Performs a bitwise exclusive OR on the values of Vx and Vy, then stores the result in Vx. 
+ * An exclusive OR compares the corrseponding bits from two values, and if the bits are not both the same, 
+ * then the corresponding bit in the result is set to 1. Otherwise, it is 0. 
+ * 
+ * @param  pRegisterx: a pointer to the desired set register
+ * @param  pRegistery: a pointer to the register in which value you would like to XOR pRegisterx to
+ * @retval None
+ */
+void XOR_8xy3(unsigned char * pRegisterx, unsigned char * pRegistery){
+    *pRegisterx = *pRegisterx ^ *pRegistery;
+}
+
 
 /**
  * @brief  

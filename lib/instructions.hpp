@@ -8,4 +8,6 @@ void OR_8xy1(unsigned char * pRegisterx, unsigned char * pRegistery);
 
 void AND_8xy2(unsigned char * pRegisterx, unsigned char * pRegistery);
 
+void XOR_8xy3(unsigned char * pRegisterx, unsigned char * pRegistery);
+
 void ADD_8xy4(unsigned char * pRegisterx, unsigned char * pRegistery, unsigned char * pRegisterF);
