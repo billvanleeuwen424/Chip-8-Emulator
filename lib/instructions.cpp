@@ -55,9 +55,28 @@ void LD_8xy0(unsigned char * pRegisterx, unsigned char * pRegistery){
  * @param  pRegisterx: a pointer to the desired set register
  * @param  pRegistery: a pointer to the register in which value you would like to OR pRegisterx to
  */
-void OR_xy1(unsigned char * pRegisterx, unsigned char * pRegistery){
+void OR_8xy1(unsigned char * pRegisterx, unsigned char * pRegistery){
     *pRegisterx = *pRegisterx | *pRegistery;
 }
+
+/**
+ * @brief  
+ * 8xy2 - AND Vx, Vy
+ * Set Vx = Vx AND Vy.
+ * Performs a bitwise AND on the values of Vx and Vy, then stores the result in Vx. 
+ * A bitwise AND compares the corrseponding bits from two values, and if both bits are 1, 
+ * then the same bit in the result is also 1. Otherwise, it is 0.
+ * 
+ * @param  pRegisterx: a pointer to the desired set register
+ * @param  pRegistery: a pointer to the register in which value you would like to AND pRegisterx to
+ * @param  pRegisterF: the 0xF register, used as carry
+ * @retval None
+ */
+void AND_8xy2(unsigned char * pRegisterx, unsigned char * pRegistery){
+    *pRegisterx = *pRegisterx & *pRegistery;
+
+}
+
 
 /**
  * @brief  

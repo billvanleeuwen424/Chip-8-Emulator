@@ -85,7 +85,7 @@ TEST_CASE("8xy1 logical OR's the value of x register correctly, and leaves y reg
         *registerPointerx = 1;
         *registerPointery = 1;
 
-        OR_xy1(registerPointerx, registerPointery);
+        OR_8xy1(registerPointerx, registerPointery);
 
         REQUIRE(*registerPointerx == 1);
         REQUIRE(*registerPointery == 1);
@@ -95,7 +95,7 @@ TEST_CASE("8xy1 logical OR's the value of x register correctly, and leaves y reg
         *registerPointerx = 0;
         *registerPointery = 1;
 
-        OR_xy1(registerPointerx, registerPointery);
+        OR_8xy1(registerPointerx, registerPointery);
 
         REQUIRE(*registerPointerx == 1);
         REQUIRE(*registerPointery == 1);
@@ -105,7 +105,7 @@ TEST_CASE("8xy1 logical OR's the value of x register correctly, and leaves y reg
         *registerPointerx = 1;
         *registerPointery = 0;
 
-        OR_xy1(registerPointerx, registerPointery);
+        OR_8xy1(registerPointerx, registerPointery);
 
         REQUIRE(*registerPointerx == 1);
         REQUIRE(*registerPointery == 0);
@@ -115,16 +115,57 @@ TEST_CASE("8xy1 logical OR's the value of x register correctly, and leaves y reg
         *registerPointerx = 170;
         *registerPointery = 85;
 
-        OR_xy1(registerPointerx, registerPointery);
+        OR_8xy1(registerPointerx, registerPointery);
 
         REQUIRE(*registerPointerx == 255);
         REQUIRE(*registerPointery == 85);
     }
 }
 
+TEST_CASE("8xy2 logical AND's the value of register x and leaves register y alone.", "[8xy2 AND]"){
+    chip8 testChip;
+
+    unsigned char *registerPointerx = &testChip.generalRegisters[0];
+    unsigned char *registerPointery = &testChip.generalRegisters[1];
+
+    SECTION("AND, input X==255 (11111111), y==255 (11111111). output X==255 (11111111), y==255 (11111111)"){
+
+        *registerPointerx = 0xFF;
+        *registerPointery = 0xFF;
+
+        AND_8xy2(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 0xFF);
+        REQUIRE(*registerPointery == 0xFF);
+    }
+    
+
+    SECTION("AND, input X==170 (10101010), y==85 (01010101). output X==0 (00000000), y==85 (01010101)"){
+        *registerPointerx = 0xAA;
+        *registerPointery = 0x55;
+
+        AND_8xy2(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 0);
+        REQUIRE(*registerPointery == 0x55);
+    }
+
+    SECTION("AND, input X==85 (01010101), y==85 (01010101). output X==85 (01010101), y==85 (01010101)"){
+        *registerPointerx = 0x55;
+        *registerPointery = 0x55;
+
+        AND_8xy2(registerPointerx, registerPointery);
+
+        REQUIRE(*registerPointerx == 0x55);
+        REQUIRE(*registerPointery == 0x55);
+    }
 
 
-TEST_CASE("8xy4 sets carry bit correctly and stores lowest 8 bits in Vx", "[8xy4 ADD]"){
+
+}
+
+
+TEST_CASE("8xy4 sets carry bit correctly and stores lowest 8 bits in Vx. Modifys overflow correctly.", "[8xy4 ADD]"){
     chip8 testChip;
 
     unsigned char *registerPointerx = &testChip.generalRegisters[0];
