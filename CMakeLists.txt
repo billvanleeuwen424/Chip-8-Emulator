@@ -24,6 +24,9 @@ ${PROJECT_SOURCE_DIR}/lib
 )
 
 # set up the tests
-set(TARGET_TEST_NAME chip8Tests)
+set(TARGET_INSTRUCTIONS_TEST_NAME InstructionTests)
+set(TARGET_HARDWARE_TEST_NAME HardwareTests)
+
 add_subdirectory(tests)
-add_test(${TARGET_TEST_NAME} tests/${TARGET_TEST_NAME})
+add_test(${TARGET_INSTRUCTIONS_TEST_NAME} tests/${TARGET_INSTRUCTIONS_TEST_NAME})
+add_test(${TARGET_HARDWARE_TEST_NAME} tests/${TARGET_HARDWARE_TEST_NAME})
