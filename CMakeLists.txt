@@ -11,6 +11,7 @@ set(SOURCES
     lib/chip8.hpp
     lib/instructions.cpp
     lib/constants.hpp
+    lib/logger.hpp
 )
 set(INCLUDE_DIRS
     ${PROJECT_SOURCE_DIR}/lib
