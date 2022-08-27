@@ -13,12 +13,8 @@ TEST_CASE("Test the Fetch method"){
         REQUIRE(5 == testChip.fetch(0x200));
     }
 
-    SECTION("Throw exception on access less than 0x200 (reserved memory)"){
-
-    }
-
-    SECTION("Throw exception on access greater than 0xFFFF (top size of memory)"){
-
+    SECTION("Returns 0 when trying to access over 0xFFFF (top size of memory)"){
+        REQUIRE(testChip.fetch(MEMORYSIZE+1) == 0);
     }
     
 }
