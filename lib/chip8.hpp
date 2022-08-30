@@ -15,22 +15,22 @@ class chip8{
 
         /**
          * @brief  the first step in the Fetch, Decode, Execute process.
-         *         gets the data from the memory location in question, and returns it.
+         *         gets the operation from the memory location passed, and immediately after,
+         *         merges them into an unsigned short, and returns it.
          * @param  programCounter: the memory location to fetch from. 
          * @retval returnValue:
          */
-        unsigned char fetch(unsigned short programCounter){
+        unsigned short fetch(unsigned short programCounter){
             
-            unsigned char returnValue = 0;
+            unsigned short returnValue = 0;
 
-            if( !(programCounter > MEMORYSIZE) ){
-                returnValue = memory[programCounter];
-            }
-            else{
+            if(programCounter >= MEMORYSIZE){
                 //returns 0 on this condition
                 logger::log("attempted to fetch from a location larger than memory available.");
-
                 //TODO stop the program in main on this error??
+            }
+            else{
+                returnValue= memory[programCounter] << 8 | memory[programCounter + 1];
             }
 
             return returnValue;
