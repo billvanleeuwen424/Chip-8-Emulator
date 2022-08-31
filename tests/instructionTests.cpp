@@ -4,6 +4,23 @@
 #include "constants.hpp"
 #include "instructions.hpp"
 
+TEST_CASE("1nnn modifies the Program Counter correctly"){
+    chip8 testChip;
+
+    SECTION("Modify PC to 0"){
+        JP_1nnn(&testChip.pc, 0);
+
+        REQUIRE(testChip.pc == 0);
+    }
+
+    SECTION("Modify PC to 0xFFF"){
+        JP_1nnn(&testChip.pc, 0xFFF);
+
+        REQUIRE(testChip.pc == 0xFFF);
+    }
+    
+}
+
 TEST_CASE("7xkk Modified the passed register correctly", "[7xkk ADD]"){
     chip8 testChip;
 
