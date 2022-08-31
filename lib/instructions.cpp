@@ -55,6 +55,14 @@ void SE_3xkk(unsigned short *programCounter, unsigned char * pRegister, unsigned
 
 }
 
+void SNE_4xkk(unsigned short *programCounter, unsigned char * pRegister, unsigned char checkValue){
+
+    if(*pRegister != checkValue){
+        *programCounter += 2;
+    }
+
+}
+
 /**
  * @brief  
  * 6xkk - LD Vx, byte
