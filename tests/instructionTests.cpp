@@ -4,7 +4,7 @@
 #include "constants.hpp"
 #include "instructions.hpp"
 
-TEST_CASE("1nnn modifies the Program Counter correctly"){
+TEST_CASE("1nnn modifies the program counter correctly"){
     chip8 testChip;
 
     SECTION("Modify PC to 0"){
@@ -19,6 +19,33 @@ TEST_CASE("1nnn modifies the Program Counter correctly"){
         REQUIRE(testChip.pc == 0xFFF);
     }
     
+}
+
+TEST_CASE("2nnn modifies the stack, and program counter correctly"){
+    chip8 testChip;
+
+    SECTION("Modify the program counter correctly"){
+        CALL_2nnn(&testChip.pc, testChip.stackPointer, 0x202);
+
+        REQUIRE(testChip.pc == 0x202);
+    }
+
+    SECTION("Modify the stack pointer correctly"){
+
+        unsigned short *originalStackPointerLocation = testChip.stackPointer;
+
+        CALL_2nnn(&testChip.pc, testChip.stackPointer, 0x202);
+
+        REQUIRE(testChip.stackPointer == originalStackPointerLocation++);
+    }
+
+    SECTION("The stack has the correct memory address stored"){
+        testChip.pc = 0x200;
+
+        CALL_2nnn(&testChip.pc, testChip.stackPointer, 0x202);
+
+        REQUIRE(testChip.stack[0] == 0x200);
+    }
 }
 
 TEST_CASE("7xkk Modified the passed register correctly", "[7xkk ADD]"){

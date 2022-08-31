@@ -1,5 +1,7 @@
 void JP_1nnn(unsigned short *programCounter, unsigned short jumpDestination);
 
+void CALL_2nnn(unsigned short *programCounter, unsigned short * stackPointer, unsigned short callDestination);
+
 void LD_6xkk(unsigned char * pRegister, unsigned char loadValue);
 
 void ADD_7xkk( unsigned char * pRegister, unsigned char additionValue);
