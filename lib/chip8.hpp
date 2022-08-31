@@ -1,5 +1,6 @@
 #define MEMORYSIZE 0xFFF
 #define REGISTERCOUNT 0xF
+#define STACKSIZE 0xF
 
 #include <logger.hpp>
 #include "instructions.hpp"
@@ -14,8 +15,8 @@ class chip8{
         unsigned char memory[MEMORYSIZE] = {0};
         unsigned char generalRegisters[REGISTERCOUNT] = {0};
         
-        unsigned char stack[STACKSIZE] = {0};
-        unsigned char * stackPointer = &stack[0]; 
+        unsigned short stack[STACKSIZE] = {0};
+        unsigned short * stackPointer = &stack[0]; 
 
         /**
          * @brief  the first step in the Fetch, Decode, Execute process.
