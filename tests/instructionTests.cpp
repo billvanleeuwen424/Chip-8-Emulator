@@ -61,7 +61,7 @@ TEST_CASE("3xkk modifies program counter correctly"){
         REQUIRE(testChip.pc == 0x202);
     }
 
-    SECTION("Modify the program counter when equal"){
+    SECTION("Do NOT modify the program counter when NOT equal"){
 
         testChip.pc = 0x200;
         testChip.generalRegisters[0] = 0xB;
@@ -69,6 +69,31 @@ TEST_CASE("3xkk modifies program counter correctly"){
         SE_3xkk(&testChip.pc, &testChip.generalRegisters[0], 0xA);
 
         REQUIRE(testChip.pc == 0x200);
+    }
+
+}
+
+TEST_CASE("4xkk modifies program counter correctly"){
+    chip8 testChip;
+
+    SECTION("Modify the program counter when NOT equal"){
+
+        testChip.pc = 0x200;
+        testChip.generalRegisters[0] = 0xA;
+
+        SNE_4xkk(&testChip.pc, &testChip.generalRegisters[0], 0xA);
+
+        REQUIRE(testChip.pc == 0x200);
+    }
+
+    SECTION("Do NOT Modify the program counter when equal"){
+
+        testChip.pc = 0x200;
+        testChip.generalRegisters[0] = 0xB;
+
+        SNE_4xkk(&testChip.pc, &testChip.generalRegisters[0], 0xA);
+
+        REQUIRE(testChip.pc == 0x202);
     }
 
 }
