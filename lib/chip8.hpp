@@ -2,6 +2,7 @@
 #define REGISTERCOUNT 0xF
 
 #include <logger.hpp>
+#include "instructions.hpp"
 
 class chip8{
     public:
@@ -34,5 +35,45 @@ class chip8{
             }
 
             return returnValue;
+        }
+
+        void decodeExecute(unsigned short opcode){
+        
+            switch (opcode & 0xF000)
+            {
+            case 0x100:
+                break;
+            case 0x200:
+                break;
+            case 0x300:
+                break;
+            case 0x400:
+                break;
+            case 0x500:
+                break;
+            case 0x600:
+                break;
+            case 0x700:
+                break;
+            case 0x800:
+                break;
+            case 0x900:
+                break;
+            case 0xA00:
+                break;
+            case 0xB00:
+                break;
+            case 0xC00:
+                break;
+            case 0xD00:
+                break;
+            case 0xE00:
+                break;
+            case 0xF00:
+                break;
+            
+            default:
+                break;
+            }  
         }
 };

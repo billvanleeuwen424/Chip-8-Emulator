@@ -19,11 +19,3 @@ TEST_CASE("Test the Fetch method"){
     }
     
 }
-
-TEST_CASE("Test the Decode method"){
-    chip8 testChip;
-
-    SECTION(""){
-        
-    }
-}
