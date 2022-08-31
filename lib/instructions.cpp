@@ -6,6 +6,15 @@ Cogwoods Chip-8 Technical Reference v1.0
 http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#00E0
 */
 
+/**
+ * @brief  
+ * Jump to location nnn.
+ * The interpreter sets the program counter to nnn. 
+ * 
+ * @param  *programCounter:  a pointer to the program counter
+ * @param  jumpDestination: 16bit value to set the pc to
+ * @retval None
+ */
 void JP_1nnn(unsigned short *programCounter, unsigned short jumpDestination){
     *programCounter = jumpDestination;
 }
