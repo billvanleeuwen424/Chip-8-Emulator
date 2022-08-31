@@ -37,6 +37,13 @@ class chip8{
             return returnValue;
         }
 
+        /**
+         * @brief  the second and third step in the Fetch, Decode, Execute process.
+         *         takes a full 16bit opcode, decodes which instruction to execute, and does so. 
+         * @note   
+         * @param  opcode: 16bit opcode fetched from memory
+         * @retval None
+         */
         void decodeExecute(unsigned short opcode){
             switch (opcode & 0xF000)
             {
