@@ -38,38 +38,69 @@ class chip8{
         }
 
         void decodeExecute(unsigned short opcode){
-        
             switch (opcode & 0xF000)
             {
-            case 0x100:
+            case 0x1000:
                 break;
-            case 0x200:
+            case 0x2000:
                 break;
-            case 0x300:
+            case 0x3000:
                 break;
-            case 0x400:
+            case 0x4000:
                 break;
-            case 0x500:
+            case 0x5000:
                 break;
-            case 0x600:
+            case 0x6000:
                 break;
-            case 0x700:
+            case 0x7000:
                 break;
-            case 0x800:
+
+            case 0x8000:
+
+                switch (opcode & 0x000F)
+                {
+                case 0x0000:
+                    LD_8xy0(&generalRegisters[opcode >> 8 & 0xF], &generalRegisters[opcode >> 4 & 0xF]);
+                    break;
+                case 0x0001:
+                    OR_8xy1(&generalRegisters[opcode >> 8 & 0xF], &generalRegisters[opcode >> 4 & 0xF]);
+                    break;
+                case 0x0002:
+                    AND_8xy2(&generalRegisters[opcode >> 8 & 0xF], &generalRegisters[opcode >> 4 & 0xF]);
+                    break;
+                case 0x0003:
+                    XOR_8xy3(&generalRegisters[opcode >> 8 & 0xF], &generalRegisters[opcode >> 4 & 0xF]);
+                    break;
+                case 0x0004:
+                    ADD_8xy4(&generalRegisters[opcode >> 8 & 0xF], &generalRegisters[opcode >> 4 & 0xF], &generalRegisters[0xF]);
+                    break;
+                case 0x0005:
+                    break;
+                case 0x0006:
+                    break;
+                case 0x0007:
+                    break;
+                case 0x000E:
+                    break;
+
+                default:
+                    break;
+                }
+
                 break;
-            case 0x900:
+            case 0x9000:
                 break;
-            case 0xA00:
+            case 0xA000:
                 break;
-            case 0xB00:
+            case 0xB000:
                 break;
-            case 0xC00:
+            case 0xC000:
                 break;
-            case 0xD00:
+            case 0xD000:
                 break;
-            case 0xE00:
+            case 0xE000:
                 break;
-            case 0xF00:
+            case 0xF000:
                 break;
             
             default:
