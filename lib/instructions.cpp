@@ -21,6 +21,24 @@ void JP_1nnn(unsigned short *programCounter, unsigned short jumpDestination){
 
 /**
  * @brief  
+ * Call subroutine at nnn.
+ * The interpreter increments the stack pointer, then puts the current PC on the top of the stack. The PC is then set to nnn.
+ * 
+ * @param  *programCounter: a pointer to the program counter
+ * @param  stackPointer: the stack pointer
+ * @param  callDestination: 16bit value to set the pc to
+ * @retval None
+ */
+void CALL_2nnn(unsigned short *programCounter, unsigned short * stackPointer, unsigned short callDestination){
+
+    *stackPointer = *programCounter;
+    stackPointer++;
+
+    *programCounter = callDestination;
+}
+
+/**
+ * @brief  
  * 6xkk - LD Vx, byte
  * Set Vx = kk.
  * The interpreter puts the value kk into register Vx.
