@@ -9,7 +9,7 @@ set(TARGET_NAME chip8)
 set(SOURCES
     src/main.cpp
     lib/chip8.hpp
-    lib/instructions.cpp
+    lib/instructions.hpp
     lib/constants.hpp
     lib/logger.hpp
 )
