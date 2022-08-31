@@ -65,6 +65,24 @@ void SNE_4xkk(unsigned short *programCounter, unsigned char * pRegister, unsigne
 
 /**
  * @brief  
+ * Skip next instruction if Vx != kk.
+ * The interpreter compares register Vx to kk, and if they are not equal, increments the program counter by 2.
+ * 
+ * @param  *programCounter: a pointer to the program counter
+ * @param  pRegister: a pointer to the desired register
+ * @param  checkValue: the value in which to check the register against
+ * @retval None
+ */
+void SNE_4xkk(unsigned short *programCounter, unsigned char * pRegister, unsigned char checkValue){
+
+    if(*pRegister != checkValue){
+        *programCounter += 2;
+    }
+
+}
+
+/**
+ * @brief  
  * 6xkk - LD Vx, byte
  * Set Vx = kk.
  * The interpreter puts the value kk into register Vx.
