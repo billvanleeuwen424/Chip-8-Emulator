@@ -48,6 +48,31 @@ TEST_CASE("2nnn modifies the stack, and program counter correctly"){
     }
 }
 
+TEST_CASE("3xkk modifies program counter correctly"){
+    chip8 testChip;
+
+    SECTION("Modify the program counter when equal"){
+
+        testChip.pc = 0x200;
+        testChip.generalRegisters[0] = 0xA;
+
+        SE_3xkk(&testChip.pc, &testChip.generalRegisters[0], 0xA);
+
+        REQUIRE(testChip.pc == 0x202);
+    }
+
+    SECTION("Modify the program counter when equal"){
+
+        testChip.pc = 0x200;
+        testChip.generalRegisters[0] = 0xB;
+
+        SE_3xkk(&testChip.pc, &testChip.generalRegisters[0], 0xA);
+
+        REQUIRE(testChip.pc == 0x200);
+    }
+
+}
+
 TEST_CASE("7xkk Modified the passed register correctly", "[7xkk ADD]"){
     chip8 testChip;
 
