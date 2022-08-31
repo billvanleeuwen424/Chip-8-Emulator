@@ -4,6 +4,7 @@ SET(INSTRUCTION_TEST_SOURCES
 )
 
 SET(HARDWARE_TEST_SOURCES
+    ${CMAKE_SOURCE_DIR}/lib/instructions.cpp
     hardwareTests.cpp
 )
 
