@@ -1,5 +1,6 @@
 #include <iostream>
 #include "constants.hpp"
+#include <stdint.h>
 
 /* all documentation for these functions is provided by:
 Cogwoods Chip-8 Technical Reference v1.0
@@ -15,7 +16,7 @@ http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#00E0
  * @param  jumpDestination: 16bit value to set the pc to
  * @retval None
  */
-void JP_1nnn(unsigned short *programCounter, unsigned short jumpDestination){
+void JP_1nnn(uint16_t *programCounter, uint16_t jumpDestination){
     *programCounter = jumpDestination;
 }
 
@@ -29,7 +30,7 @@ void JP_1nnn(unsigned short *programCounter, unsigned short jumpDestination){
  * @param  callDestination: 16bit value to set the pc to
  * @retval None
  */
-void CALL_2nnn(unsigned short *programCounter, unsigned short * stackPointer, unsigned short callDestination){
+void CALL_2nnn(uint16_t *programCounter, uint16_t * stackPointer, uint16_t callDestination){
 
     *stackPointer = *programCounter;
     stackPointer++;
@@ -47,7 +48,7 @@ void CALL_2nnn(unsigned short *programCounter, unsigned short * stackPointer, un
  * @param  checkValue: the value in which to check the register against
  * @retval None
  */
-void SE_3xkk(unsigned short *programCounter, unsigned char * pRegister, unsigned char checkValue){
+void SE_3xkk(uint16_t *programCounter, u_int8_t * pRegister, u_int8_t checkValue){
 
     if(*pRegister == checkValue){
         *programCounter += 2;
@@ -65,7 +66,7 @@ void SE_3xkk(unsigned short *programCounter, unsigned char * pRegister, unsigned
  * @param  checkValue: the value in which to check the register against
  * @retval None
  */
-void SNE_4xkk(unsigned short *programCounter, unsigned char * pRegister, unsigned char checkValue){
+void SNE_4xkk(uint16_t *programCounter, u_int8_t * pRegister, u_int8_t checkValue){
 
     if(*pRegister != checkValue){
         *programCounter += 2;
@@ -82,7 +83,7 @@ void SNE_4xkk(unsigned short *programCounter, unsigned char * pRegister, unsigne
  * @param  pRegister: a pointer to the deisred register
  * @param  loadValue:  the value to asign to that register
  */
-void LD_6xkk(unsigned char * pRegister, unsigned char loadValue){
+void LD_6xkk(u_int8_t * pRegister, u_int8_t loadValue){
     *pRegister = loadValue;
 }
 
@@ -95,7 +96,7 @@ void LD_6xkk(unsigned char * pRegister, unsigned char loadValue){
  * @param pRegister a pointer to the deisred register
  * @param additionValue the value to add to that register
  */
-void ADD_7xkk(unsigned char * pRegister, unsigned char additionValue){
+void ADD_7xkk(u_int8_t * pRegister, u_int8_t additionValue){
     *pRegister += additionValue;
 }
 
@@ -108,7 +109,7 @@ void ADD_7xkk(unsigned char * pRegister, unsigned char additionValue){
  * @param  pRegisterx: a pointer to the desired set register
  * @param  pRegistery: a pointer to the register in which value you would like to set pRegisterx to
  */
-void LD_8xy0(unsigned char * pRegisterx, unsigned char * pRegistery){
+void LD_8xy0(u_int8_t * pRegisterx, u_int8_t * pRegistery){
     *pRegisterx = *pRegistery;
 }
 
@@ -122,7 +123,7 @@ void LD_8xy0(unsigned char * pRegisterx, unsigned char * pRegistery){
  * @param  pRegisterx: a pointer to the desired set register
  * @param  pRegistery: a pointer to the register in which value you would like to OR pRegisterx to
  */
-void OR_8xy1(unsigned char * pRegisterx, unsigned char * pRegistery){
+void OR_8xy1(u_int8_t * pRegisterx, u_int8_t * pRegistery){
     *pRegisterx = *pRegisterx | *pRegistery;
 }
 
@@ -139,7 +140,7 @@ void OR_8xy1(unsigned char * pRegisterx, unsigned char * pRegistery){
  * @param  pRegisterF: the 0xF register, used as carry
  * @retval None
  */
-void AND_8xy2(unsigned char * pRegisterx, unsigned char * pRegistery){
+void AND_8xy2(u_int8_t * pRegisterx, u_int8_t * pRegistery){
     *pRegisterx = *pRegisterx & *pRegistery;
 
 }
@@ -156,7 +157,7 @@ void AND_8xy2(unsigned char * pRegisterx, unsigned char * pRegistery){
  * @param  pRegistery: a pointer to the register in which value you would like to XOR pRegisterx to
  * @retval None
  */
-void XOR_8xy3(unsigned char * pRegisterx, unsigned char * pRegistery){
+void XOR_8xy3(u_int8_t * pRegisterx, u_int8_t * pRegistery){
     *pRegisterx = *pRegisterx ^ *pRegistery;
 }
 
@@ -173,7 +174,7 @@ void XOR_8xy3(unsigned char * pRegisterx, unsigned char * pRegistery){
  * @param  pRegisterF: the 0xF register, used as carry
  * @retval None
  */
-void ADD_8xy4(unsigned char * pRegisterx, unsigned char * pRegistery, unsigned char * pRegisterF){
+void ADD_8xy4(u_int8_t * pRegisterx, u_int8_t * pRegistery, u_int8_t * pRegisterF){
 
     int additonValue = *pRegisterx + *pRegistery;
 
