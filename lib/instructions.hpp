@@ -19,3 +19,5 @@ void AND_8xy2(u_int8_t * pRegisterx, u_int8_t * pRegistery);
 void XOR_8xy3(u_int8_t * pRegisterx, u_int8_t * pRegistery);
 
 void ADD_8xy4(u_int8_t * pRegisterx, u_int8_t * pRegistery, u_int8_t * pRegisterF);
+
+void DRW_Dxyn(u_int8_t xCoord, u_int8_t yCoord, u_int8_t * pRegisterI);

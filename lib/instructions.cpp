@@ -188,3 +188,21 @@ void ADD_8xy4(u_int8_t * pRegisterx, u_int8_t * pRegistery, u_int8_t * pRegister
     //get ONLY the lowest 8 bits of the value
     *pRegisterx = additonValue & 0xFF;
 }
+
+/**
+ * @brief  
+ * Display n-byte sprite starting at memory location I at (Vx, Vy), set VF = collision.
+ * 
+ * The interpreter reads n bytes from memory, starting at the address stored in I. 
+ * These bytes are then displayed as sprites on screen at coordinates (Vx, Vy). 
+ * Sprites are XORed onto the existing screen. If this causes any pixels to be erased, VF is set to 1, otherwise it is set to 0. 
+ * If the sprite is positioned so part of it is outside the coordinates of the display, it wraps around to the opposite side of the screen. 
+ * 
+ * @param  xCoord starting x coordinates of sprite to be drawn
+ * @param  yCoord starting y coordinates of sprite to be drawn
+ * @param  pRegisterI a pointer to the I register, which stores the memory location of the sprite
+ * @retval None
+ */
+void DRW_Dxyn(u_int8_t xCoord, u_int8_t yCoord, u_int8_t * pRegisterI){
+    
+}
